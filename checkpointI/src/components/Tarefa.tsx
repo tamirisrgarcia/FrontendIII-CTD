@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import '../components/tarefa.css'
+import { MdDeleteForever, MdEditNote } from 'react-icons/md';
 
 function Tarefa() {
   const [titulo, setTitulo] = useState("")
@@ -46,24 +47,6 @@ function Tarefa() {
 
   }
 
-  function editarTarefa(event) {
-    event.preventDefault();
-
-    const copiaListaTarefa = [...listaTarefa];
-
-    const index = copiaListaTarefa.findIndex(
-      (listaTarefa) => listaTarefa.id === id
-    );
-
-    copiaListaTarefa[index].titulo = titulo;
-    copiaListaTarefa[index].categoria = categoria;
-    copiaListaTarefa[index].data = data;
-    copiaListaTarefa[index].descricao = descricao;
-
-    setListaTarefa(copiaListaTarefa);
-  }
-
-
   function apagarTarefa(id) {
     if (confirm("Deseja realmente apagar a tarefa?")) {
       const result = listaTarefa.filter((item) => item.id !== id);
@@ -102,7 +85,7 @@ function Tarefa() {
           <input value={data} type="date" onChange={(event) => setData(event.target.value)}/>
           <br />
 
-          <textarea cols="30" rows="10" placeholder="Descreva sua tarefa..." value={descricao} onChange={(event) => setDescricao(event.target.value)}>Descrição</textarea>
+          <textarea placeholder="Descreva sua tarefa..." value={descricao} onChange={(event) => setDescricao(event.target.value)}>Descrição</textarea>
           <br />
 
           <input type="submit" value={id ? "Salvar" : "Cadastrar" } />
@@ -115,15 +98,18 @@ function Tarefa() {
           {listaTarefa.length > 0 ? (
             <ul>
               {listaTarefa.map((item) => (
-                <li key={item.id}>
-                  <p>{item.id}</p>
-                  <p>{item.titulo}</p>
-                  <p>{item.categoria}</p>
-                  <p>{item.data}</p>
-                  <p>{item.descricao}</p>
+                <li key={item.id} className="card">
+                  <div className="info">
+                  <p className="titulo">{item.titulo}</p>
+                  <p className="categoria">{item.categoria}</p>
+                  <p className="descricao">{item.descricao}</p>
+                  </div>
 
-                <button onClick={() => apagarTarefa(item.id)}>Apagar</button>
-                <button onClick={() => preencheTarefa(item)}>Editar</button>
+                  <div className="buttons">
+                    <p className="data">{item.data}</p>
+                    <button onClick={() => preencheTarefa(item)}><MdEditNote size={20}/></button>
+                    <button onClick={() => apagarTarefa(item.id)}><MdDeleteForever size={20} /></button>
+                  </div>
                   
                 </li>
               ))}
