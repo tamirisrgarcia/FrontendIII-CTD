@@ -39,6 +39,8 @@ function App() {
             <p>Email: {user.email}</p>
             <p>Gênero: {user.gender}</p>
             <p>Data de Nascimento: {user.birthDate}</p>
+            <p>Altura: {user.height} cm</p>
+            <p>Peso: {user.weight} kg</p>
             <img src={user.image} width={100} />
           </li>
         ))}
