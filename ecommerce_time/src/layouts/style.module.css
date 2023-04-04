@@ -1,0 +1,39 @@
+.header {
+    height: 30px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.header ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+  
+.footer {
+    font-size: 14px;
+    text-align: center;
+}
+  
+.children {
+    min-height: calc(100vh - 30px - 30px - 100px);
+    padding: 40px 20px;
+}
+  
+.logo {
+    width: 150px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #FFF;
+    font-size: 14px;
+}
+
